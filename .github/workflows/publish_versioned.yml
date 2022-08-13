@@ -1,4 +1,4 @@
-name: Publish Latest
+name: Publish Versioned
 
 on:
   release:
