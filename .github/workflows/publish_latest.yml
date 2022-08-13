@@ -1,6 +1,7 @@
-name: Publish
+name: Publish Latest
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 0 * * 0"
   push:
@@ -36,6 +37,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          tags: latest
 
       - name: Build & Publish Image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc

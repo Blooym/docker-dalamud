@@ -16,7 +16,7 @@ To work on a project inside of this environment, you must first add the followin
 You can then use the image by adding the following to your Dockerfile:
 
 ```
-FROM ghcr.io/bitsofabyte/docker-dalamud:main
+FROM ghcr.io/bitsofabyte/docker-dalamud:latest
 ```
 
 ## Image Updates
