@@ -1,10 +1,12 @@
-name: Publish Versioned
+name: Publish Staging
 
 on:
-  release:
-    types:
-      - edited
-      - published
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 0"
+  push:
+    branches: [main]
+    paths: ["Dockerfile-staging"]
 
 env:
   REGISTRY: ghcr.io
@@ -35,10 +37,12 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          tags: staging
 
       - name: Build & Publish Image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
+          file: ./Dockerfile-staging
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}

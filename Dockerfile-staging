@@ -1,0 +1,11 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine
+
+# Install Dalamud Library from the latest staging release.
+ENV DALAMUD_HOME=/lib/dalamud
+WORKDIR ${DALAMUD_HOME}
+RUN wget -O dalamud.zip https://goatcorp.github.io/dalamud-distrib/stg/latest.zip
+RUN unzip dalamud.zip
+RUN rm dalamud.zip
+
+# Set workdir back to default.
+WORKDIR /

@@ -1,10 +1,10 @@
 # Docker-Dalamud
+A controlled docker environment for developing [Dalamud](https://github.com/goatcorp/Dalamud)-dependant projects with Dotnet, built ontop of the `Dotnet/SDK:<ver>-alpine` image. 
 
-A controlled docker environment for developing Dalamud Plugins with Dotnet, built ontop of `DotnetSDK:Alpine`. The primary target of this image is for [Dev Containers](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/introduction-to-dev-containers) and CI/CD environments.
+The primary target of this image is for [development containers](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/introduction-to-dev-containers) and CI/CD environments, though it will work for any use-case.
 
-## Usage
-
-To work on a project inside of this environment, you must first add the following to your plugin `.csproj` file to be able to use the bundled dependencies.
+## Pre-Requisites
+In order to be able to compile a project that uses Dalamud inside of the container, you must be using `DalamudLibPath` and have the following inside of your csproj file:
 
 ```
 <PropertyGroup Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'">
@@ -13,12 +13,22 @@ To work on a project inside of this environment, you must first add the followin
 </PropertyGroup>
 ```
 
-You can then use the image by adding the following to your Dockerfile:
+## Usage 
+This image is published under 2 separate tags, `latest` and `staging`, which will both include different versions of Dalamud. All release files are sourced from the official [Dalamud-Distrib](https://github.com/goatcorp/dalamud-distrib) repository.
+
+### Latest 
+Latest is the current stable version of Dalamud and can used by adding the following to your Dockerfile:
 
 ```
 FROM ghcr.io/bitsofabyte/docker-dalamud:latest
 ```
 
-## Image Updates
+### Staging
+Staging is the next version of Dalamud and can be used by adding the following to your Dockerfile:
 
-The container image will automatically rebuild & publish itself every week with the latest Dalamud library files; and the Dotnet SDK version will be manually changed to the latest stable version when released unless it is incompatible.
+```
+FROM ghcr.io/bitsofabyte/docker-dalamud:staging
+```
+
+## Container Image Updates
+All container images are automatically updated weekly and bundled in with the latest version of Dalamud for the tag assigned to it. The dotnet version inside of the container will be incremented whenever it is supported, stable and a base image is available for it.
