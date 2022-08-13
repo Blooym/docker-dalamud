@@ -3,7 +3,6 @@ name: Publish Versioned
 on:
   release:
     types:
-      - created
       - edited
       - published
 
