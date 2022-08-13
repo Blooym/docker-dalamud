@@ -1,6 +1,6 @@
 # Docker-Dalamud
 
-A controlled docker environment for developing Dalamud Plugins with Dotnet, built ontop of `DotnetSDK:Alpine`. The primary target of this image is for [Dev Containers](https://docs.github.com/en/codespaces/setting-up-your-project-for) and CI/CD environments.
+A controlled docker environment for developing Dalamud Plugins with Dotnet, built ontop of `DotnetSDK:Alpine`. The primary target of this image is for [Dev Containers](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/introduction-to-dev-containers) and CI/CD environments.
 
 ## Usage
 
