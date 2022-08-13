@@ -13,6 +13,12 @@ To work on a project inside of this environment, you must first add the followin
 </PropertyGroup>
 ```
 
+You can then use the image by adding the following to your Dockerfile:
+
+```
+FROM ghcr.io/bitsofabyte/docker-dalamud:main
+```
+
 ## Image Updates
 
 The container image will automatically rebuild & publish itself every week with the latest Dalamud library files; and the Dotnet SDK version will be manually changed to the latest stable version when released unless it is incompatible.
