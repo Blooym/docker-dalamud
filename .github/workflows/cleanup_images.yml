@@ -20,7 +20,7 @@ jobs:
     - name: Prune Untagged 
       uses: vlaurin/action-ghcr-prune@main
       with:
-        token: ${{ secrets.YOUR_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         organization: BitsOfAByte
         container: docker-dalamud
         untagged: true
