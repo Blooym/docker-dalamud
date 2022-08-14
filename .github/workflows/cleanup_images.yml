@@ -21,6 +21,5 @@ jobs:
       uses: vlaurin/action-ghcr-prune@main
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        organization: BitsOfAByte
-        container: docker-dalamud
+        container: ${{ env.IMAGE_NAME }}
         untagged: true
