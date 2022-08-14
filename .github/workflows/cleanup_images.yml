@@ -1,0 +1,26 @@
+name: Cleanup Images
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 0"
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  Prune:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      
+    steps:
+    - name: Prune Untagged 
+      uses: vlaurin/action-ghcr-prune@main
+      with:
+        token: ${{ secrets.YOUR_TOKEN }}
+        organization: BitsOfAByte
+        container: docker-dalamud
+        untagged: true
