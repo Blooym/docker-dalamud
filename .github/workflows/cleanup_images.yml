@@ -3,7 +3,7 @@ name: Cleanup Images
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * 0"
+    - cron: "0 1 * * 0"
 
 env:
   REGISTRY: ghcr.io
