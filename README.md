@@ -5,7 +5,7 @@ A  docker image for developing and building [Dalamud](https://github.com/goatcor
 In order to build a Dotnet project that uses Dalamud, you will first need to be using `<DalamudLibPath>` to point at where your Dalamud files are located. Add the following below to allow for the `$DALAMUD_HOME` environment variable to replace the existing `<DalamudLibPath>` location on operating systems that are not WindowsNT.
 
 ```csproj
-<PropertyGroup Condition="'$(OS)' != 'Windows_NT'>
+<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
   <DalamudLibPath>$(DALAMUD_HOME)/</DalamudLibPath>
   <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 </PropertyGroup>
