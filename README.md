@@ -12,7 +12,9 @@ In order to build a Dotnet project that uses Dalamud, you will first need to be 
 ```
 
 ## Using the image
-This image is published under 2 separate tags, `latest` and `staging`, which will both include different versions of Dalamud. All release files are sourced from the official [Dalamud-Distrib](https://github.com/goatcorp/dalamud-distrib) repository.
+This image is published under 3 separate tags, `latest`, `staging` and `experimental`, all include different versions of Dalamud. For example, `latest` will always point to the latest stable version of Dalamud, `staging` will always point to the staging branch of Dalamud and `experimental` will point to the latest experimental changes in Dalamud, like when testing new API versions (please note this version may fall behind when there are no experimental changes being tested). 
+
+All release files are sourced from the official [Dalamud-Distrib](https://github.com/goatcorp/dalamud-distrib) repository.
 
 ### Latest 
 Latest is the current stable version of Dalamud and can used by adding the following to your Dockerfile:
