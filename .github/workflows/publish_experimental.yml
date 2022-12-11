@@ -6,7 +6,7 @@ on:
     - cron: "0 0 * * 0"
   push:
     branches: [main]
-    paths: ["Dockerfile-staging"]
+    paths: ["Dockerfile-experimental"]
 
 env:
   REGISTRY: ghcr.io
