@@ -1,8 +1,8 @@
 # Docker-Dalamud
-A  docker image for developing and building [Dalamud](https://github.com/goatcorp/Dalamud)-dependant projects, built ontop of the `Dotnet/SDK:alpine` image. The primary targets for this image are CI/CD Pipelines and Development Containers/Codespaces; though it should work for any other usecase as well.
+A docker image built ontop of the `Dotnet/SDK:alpine` for developing and building [Dalamud](https://github.com/goatcorp/Dalamud)-dependant projects such as Plugins and Libraries.
 
-## Project Setup
-In order to build a Dotnet project that uses Dalamud, you will first need to be using `<DalamudLibPath>` to point at where your Dalamud files are located. Add the following below to allow for the `$DALAMUD_HOME` environment variable to replace the existing `<DalamudLibPath>` location on operating systems that are not WindowsNT.
+## Using Docker-Dalamud with your project
+In order to utilize the Dalamud setup inside of the container you will first need to be using `<DalamudLibPath>` to point at where your Dalamud files are located. Add the following below to your MsBuild (`.csproj`) configuration to allow for the `$DALAMUD_HOME` environment variable to replace the existing `<DalamudLibPath>` location on operating systems that are not Windows (such as the container runtime OS).
 
 ```csproj
 <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
@@ -11,24 +11,21 @@ In order to build a Dotnet project that uses Dalamud, you will first need to be 
 </PropertyGroup>
 ```
 
-## Using the image
-This image is published under 3 separate tags, `latest`, `staging` and `experimental`, all include different versions of Dalamud. For example, `latest` will always point to the latest stable version of Dalamud, `staging` will always point to the staging branch of Dalamud and `experimental` will point to the latest experimental changes in Dalamud, like when testing new API versions (please note this version may fall behind when there are no experimental changes being tested). 
+## Image versions
+This image is published under 3 separate tags, `latest`, `staging` and `experimental`, all include different versions of Dalamud. 
 
-All release files are sourced from the official [Dalamud-Distrib](https://github.com/goatcorp/dalamud-distrib) repository.
+- `latest` will always point to the latest release version of Dalamud sent to regular users. Always stable to build projects with.
+- `staging` will always point to the staging branch of Dalamud where changes are sent to testing users. Mostly stable to build projects with.
+- `experimental` will point to the current testing grounds for big changes to Dalamud, such as API or .NET version increases. Please note that this tag may fall behind or be switched to mirror staging when there are no experimental changes within Dalamud currently available. Very unstable and should not be used long-term for projects.
 
-### Latest 
-Latest is the current stable version of Dalamud and can used by adding the following to your Dockerfile:
+All of Dalamud's library & release files are sourced from the official [Dalamud-Distrib](https://github.com/goatcorp/dalamud-distrib) repository; You can confirm this by checking the CI runs for this repository.
+
+### Image URL
+Add the following to the top of your Dockerfile and replace`latest` if you wish to use a different image version.
 
 ```
 FROM ghcr.io/bitsofabyte/docker-dalamud:latest
 ```
 
-### Staging
-Staging is the next version of Dalamud and can be used by adding the following to your Dockerfile:
-
-```
-FROM ghcr.io/bitsofabyte/docker-dalamud:staging
-```
-
-## Container Image Updates
-All container images are automatically updated weekly and bundled in with the latest version of Dalamud for the tag assigned to it. The dotnet version inside of the container will be incremented whenever it is supported, stable and a base image is available for it.
+## Image Updates
+All images are automatically updated weekly and bundled in with the latest version of Dalamud for the tag assigned to it. The .NET version inside of the container will be incremented whenever it is supported by Dalamud.
