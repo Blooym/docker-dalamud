@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine
+FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine
 
 # Install Dalamud Library from the latest stable release.
 ENV DALAMUD_HOME=/lib/dalamud
