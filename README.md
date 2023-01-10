@@ -28,4 +28,4 @@ FROM ghcr.io/bitsofabyte/docker-dalamud:latest
 ```
 
 ## Image Updates
-All images are automatically updated weekly and bundled in with the latest version of Dalamud for the tag assigned to it. The .NET version inside of the container will be incremented whenever it is supported by Dalamud.
+All images are automatically updated and bundled in with the latest version of Dalamud for the tag assigned to it. The .NET version inside of the container will be incremented whenever it is supported by Dalamud.
