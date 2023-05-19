@@ -1,20 +1,13 @@
-#--------------------
-#    Build Stage
-#--------------------
 FROM alpine:3.18 AS builder
 WORKDIR /build
 
-# Download Dalamud Release
 RUN wget -O dalamud.zip https://goatcorp.github.io/dalamud-distrib/latest.zip
 RUN unzip dalamud.zip -d dalamud
 
+# ---------------------
 
-#---------------------
-#    Runtime Stage
-#---------------------
 FROM mcr.microsoft.com/dotnet/runtime:7.0-alpine
 ENV DALAMUD_HOME=/lib/dalamud
 WORKDIR ${DALAMUD_HOME}
 
-# Copy Dalamud
 COPY --from=builder /build/dalamud/ ${DALAMUD_HOME}/

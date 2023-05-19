@@ -16,7 +16,7 @@ All images are automatically updated and bundled in with the latest version of D
 
 ## Usage
 
-Add the following to the top of your Dockerfile and replace `latest` if you wish to use a different image version.
+Add the following to the top of your Dockerfile and replace `latest` if you wish to use a different image version. ([View all](https://github.com/BitsOfAByte/docker-dalamud/pkgs/container/docker-dalamud))
 
 ```
 FROM ghcr.io/bitsofabyte/docker-dalamud:latest
