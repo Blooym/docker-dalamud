@@ -6,7 +6,7 @@ RUN unzip dalamud.zip -d dalamud
 
 # ---------------------
 
-FROM mcr.microsoft.com/dotnet/runtime:7.0-bullseye-slim
+FROM mcr.microsoft.com/dotnet/sdk:7.0-bullseye-slim
 ENV DALAMUD_HOME=/lib/dalamud
 WORKDIR ${DALAMUD_HOME}
 
