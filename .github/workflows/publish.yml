@@ -1,4 +1,4 @@
-name: Publish Latest
+name: Publish Image
 
 on:
   workflow_dispatch:
@@ -18,6 +18,9 @@ jobs:
     permissions:
       contents: read
       packages: write
+    strategy:
+      matrix:
+        Dockerfile: [Dockerfile-latest, Dockerfile-staging]
 
     steps:
       - name: Checkout repository
@@ -42,7 +45,7 @@ jobs:
       - name: Build & Publish Image
         uses: docker/build-push-action@v3
         with:
-          file: ./Dockerfile-latest
+          file: ./${{ matrix.Dockerfile }}
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
