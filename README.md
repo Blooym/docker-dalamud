@@ -1,24 +1,12 @@
 # Docker-Dalamud
-A docker image built ontop of the `Dotnet/SDK:alpine` for developing and building [Dalamud](https://github.com/goatcorp/Dalamud)-dependant projects such as Plugins and Libraries.
-
-## Using Docker-Dalamud with your project
-In order to utilize the Dalamud setup inside of the container you will first need to be using `<DalamudLibPath>` to point at where your Dalamud files are located. Add the following below to your MsBuild (`.csproj`) configuration to allow for the `$DALAMUD_HOME` environment variable to replace the existing `<DalamudLibPath>` location on operating systems that are not Windows (such as the container runtime OS).
-
-```csproj
-<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-  <DalamudLibPath>$(DALAMUD_HOME)/</DalamudLibPath>
-  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-</PropertyGroup>
-```
+A Docker image built ontop of the [`Dotnet/SDK:alpine`](https://github.com/dotnet/dotnet-docker) for developing and building [Dalamud](https://github.com/goatcorp/Dalamud)-dependant projects.
 
 ## Image versions
-This image is published under 3 separate tags, `latest`, `staging` and `experimental`, all include different versions of Dalamud. 
+This image is published under 2 separate tags: 
+  - `latest`: Points to the latest stable release of Dalamud.
+  - `staging`: Points to the staging branch release Dalamud, good for development and testing.
 
-- `latest` will always point to the latest release version of Dalamud sent to regular users. Always stable to build projects with.
-- `staging` will always point to the staging branch of Dalamud where changes are sent to testing users. Mostly stable to build projects with.
-- `experimental` will point to the current testing grounds for big changes to Dalamud, such as API or .NET version increases. Please note that this tag may fall behind or be switched to mirror staging when there are no experimental changes within Dalamud currently available. Very unstable and should not be used long-term for projects.
-
-All of Dalamud's library & release files are sourced from the official [Dalamud-Distrib](https://github.com/goatcorp/dalamud-distrib) repository; You can confirm this by checking the CI runs for this repository.
+All release files are sourced from the official [Dalamud-Distrib](https://github.com/goatcorp/dalamud-distrib) repository - you can confirm this by checking the checksums of the files in `/lib/dalamud`.
 
 ### Image URL
 Add the following to the top of your Dockerfile and replace`latest` if you wish to use a different image version.
@@ -29,3 +17,13 @@ FROM ghcr.io/bitsofabyte/docker-dalamud:latest
 
 ## Image Updates
 All images are automatically updated and bundled in with the latest version of Dalamud for the tag assigned to it. The .NET version inside of the container will be incremented whenever it is supported by Dalamud.
+
+## Using with C# projects
+To use this image with your C# project, you will need to add the following to your `.csproj` file. Please note that you will need to be using `<DalamudLibPath>` for your Dalamud library references for this to work.
+
+```csproj
+<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+  <DalamudLibPath>$(DALAMUD_HOME)/</DalamudLibPath>
+  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+</PropertyGroup>
+```
