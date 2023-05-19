@@ -27,9 +27,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       
+        # Pull everything after - from Dockerfile file name, if - is not there then use everything after : instead, but only if - is not there
       - name: Pull image name from Dockerfile
         run: |
-          echo "IMAGE_TAG=$(echo ${{ matrix.Dockerfile }} | cut -d'-' -f2)" >> $GITHUB_ENV
+          if [[ ${{ matrix.Dockerfile }} == *-* ]]; then
+            echo IMAGE_TAG=$(echo ${{ matrix.Dockerfile }} | cut -d'-' -f2) >> $GITHUB_ENV
+          else
+            echo IMAGE_TAG=$(echo ${{ matrix.Dockerfile }} | cut -d':' -f2) >> $GITHUB_ENV
+          fi
 
       - name: Log in to the Container registry
         uses: docker/login-action@v2
