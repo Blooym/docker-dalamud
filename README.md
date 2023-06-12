@@ -6,10 +6,10 @@ All release files are sourced from the official [Dalamud-Distrib](https://github
 
 ## Usage
 
-Add the following to the top of your Dockerfile and replace `latest` if you wish to use a different image version. ([View all](https://github.com/BitsOfAByte/docker-dalamud/pkgs/container/docker-dalamud))
+Add the following to the top of your Dockerfile and replace `latest` if you wish to use a different image version. ([View all](https://github.com/Blooym/docker-dalamud/pkgs/container/docker-dalamud))
 
 ```
-FROM ghcr.io/bitsofabyte/docker-dalamud:latest
+FROM ghcr.io/blooym/docker-dalamud:latest
 ```
 
 ### C# Projects
