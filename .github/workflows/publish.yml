@@ -1,4 +1,4 @@
-name: Publish Images
+name: Publish
 
 on:
   workflow_dispatch:
@@ -20,7 +20,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  Release:
+  Image:
     runs-on: ubuntu-latest
     permissions:
       contents: read
