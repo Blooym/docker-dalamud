@@ -2,6 +2,12 @@ name: Publish Images
 
 on:
   workflow_dispatch:
+    inputs:
+        push-registry:
+            description: 'Push to registry'
+            type: boolean
+            required: true
+            default: true
   schedule:
     - cron: "0 0 * * *"
   push:
@@ -26,8 +32,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
-        # Pull everything after - from Dockerfile file name, if - is not there then use everything after : instead, but only if - is not there
+
+      - name: Determine whether to push to registry
+        run: |
+            if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+                echo "PUSH_REGISTRY=${{ github.event.inputs.push-registry }}" >> $GITHUB_ENV
+            else
+                echo "PUSH_REGISTRY=true" >> $GITHUB_ENV
+            fi
+
       - name: Pull image name from Dockerfile
         run: |
           if [[ ${{ matrix.Dockerfile }} == *-* ]]; then
@@ -57,7 +70,7 @@ jobs:
         with:
           file: ./${{ matrix.Dockerfile }}
           context: .
-          push: true
+          push: ${{ env.PUSH_REGISTRY }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
