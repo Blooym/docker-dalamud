@@ -15,9 +15,9 @@ on:
     paths: 
       - '**/Dockerfile*'
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+concurrency: 
+  group: ${{ github.repository }}
+  cancel-in-progress: true
 
 jobs:
   Image:
@@ -25,7 +25,11 @@ jobs:
     permissions:
       contents: read
       packages: write
+    env:
+      REGISTRY: ghcr.io
+      IMAGE_NAME: ${{ github.repository }}
     strategy:
+      fail-fast: false
       matrix:
         Dockerfile: ["Dockerfile:latest", "Dockerfile:staging", "Dockerfile:v9", "Debian/Dockerfile-debian:latest", "Debian/Dockerfile-debian:staging", "Debian/Dockerfile-debian:v9"]
 
