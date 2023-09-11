@@ -27,7 +27,7 @@ jobs:
       packages: write
     strategy:
       matrix:
-        Dockerfile: ["Dockerfile:latest", "Dockerfile:staging", "Debian/Dockerfile-debian:latest", "Debian/Dockerfile-debian:staging"]
+        Dockerfile: ["Dockerfile:latest", "Dockerfile:staging", "Dockerfile:v9", "Debian/Dockerfile-debian:latest", "Debian/Dockerfile-debian:staging", "Debian/Dockerfile-debian:v9"]
 
     steps:
       - name: Checkout repository
