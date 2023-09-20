@@ -92,4 +92,5 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         container: docker-dalamud
+        keep-younger-than: 7
         prune-untagged: true
