@@ -8,7 +8,7 @@ The .NET SDK is also provided in this image and is automatically matched to what
 
 ## Usage
 
-Tags for this image are created using the format `{dalamud-branch}-{os-version}`, for example the stable branch for Dalamud using Alpine Linux would be `stable-alpine`. It is highly recommended not to just use the `latest` tag as this is not explicitly defined and could randomly change.
+Tags for this image are created using the format `{dalamud-branch}-{os-version}`, for example the stable branch for Dalamud using Alpine Linux would be `stable-alpine`. It is highly recommended not to just use the `latest` tag by itself as this is not explicitly defined and could randomly change.
 
 To use this image, simply add the following to your `Dockerfile`:
 
