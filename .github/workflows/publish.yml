@@ -34,7 +34,7 @@ jobs:
       fail-fast: false
       matrix:
         os-release: [alpine, bookworm-slim]
-        dalamud-release: [latest, stg/latest, v9/latest]
+        dalamud-release: [latest, stg, v9]
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
