@@ -2,7 +2,7 @@
 
 A Docker image built for developing and building [Dalamud](https://github.com/goatcorp/Dalamud)-dependant projects and plugins.
 
-All Dalamud release files are sourced from the official [Dalamud-Distrib](https://github.com/goatcorp/dalamud-distrib) repository - you can confirm this by checking the checksums of the files in `/lib/dalamud`. All images are automatically updated on a regular interval.
+All Dalamud release files are sourced from the official [dalamud-distrib](https://github.com/goatcorp/dalamud-distrib) repository - you can confirm this by checking the checksums of the files in `/lib/dalamud`. All images are automatically updated on a regular interval.
 
 The .NET SDK is also provided in this image and is automatically matched to whatever version that Dalamud is using at the time.
 
@@ -16,7 +16,7 @@ To use this image, simply add the following to your `Dockerfile`:
 FROM ghcr.io/blooym/docker-dalamud:<dalamud-branch>-<os-version>
 ```
 
-([View all tags](https://github.com/Blooym/docker-dalamud/pkgs/container/docker-dalamud))
+[View all tags](https://github.com/Blooym/docker-dalamud/pkgs/container/docker-dalamud)
 
 ### In C# Projects
 
