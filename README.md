@@ -1,18 +1,24 @@
 # Docker-Dalamud
 
-A Docker image built ontop of the [`Dotnet/SDK:alpine`](https://github.com/dotnet/dotnet-docker) for developing and building [Dalamud](https://github.com/goatcorp/Dalamud)-dependant projects.
+A Docker image built for developing and building [Dalamud](https://github.com/goatcorp/Dalamud)-dependant projects and plugins.
 
-All release files are sourced from the official [Dalamud-Distrib](https://github.com/goatcorp/dalamud-distrib) repository - you can confirm this by checking the checksums of the files in `/lib/dalamud`. All images are automatically updated on regular intervals.
+All Dalamud release files are sourced from the official [Dalamud-Distrib](https://github.com/goatcorp/dalamud-distrib) repository - you can confirm this by checking the checksums of the files in `/lib/dalamud`. All images are automatically updated on a regular interval.
+
+The .NET SDK is also provided in this image and is automatically matched to whatever version that Dalamud is using at the time.
 
 ## Usage
 
-Add the following to the top of your Dockerfile and replace `latest` if you wish to use a different image version. ([View all](https://github.com/Blooym/docker-dalamud/pkgs/container/docker-dalamud))
+Tags for this image are created using the format `{dalamud-branch}-{os-version}`, for example the stable branch for Dalamud using Alpine Linux would be `stable-alpine`. It is highly recommended not to just use the `latest` tag as this is not explicitly defined and could randomly change.
+
+To use this image, simply add the following to your `Dockerfile`:
 
 ```
-FROM ghcr.io/blooym/docker-dalamud:latest
+FROM ghcr.io/blooym/docker-dalamud:<dalamud-branch>-<os-version>
 ```
 
-### C# Projects
+([View all tags](https://github.com/Blooym/docker-dalamud/pkgs/container/docker-dalamud))
+
+### In C# Projects
 
 To use this image with your C# project, you will need to add the following to your `.csproj` file. Please note that you will need to be using `<DalamudLibPath>` for your Dalamud library references for this to work.
 
