@@ -11,6 +11,6 @@ RUN apk add --no-cache wget unzip \
     && unzip dalamud.zip -d dalamud
 
 # Build the final image
-FROM mcr.microsoft.com/dotnet/sdk:7.0-${OS}
+FROM ${OS}
 ENV DALAMUD_HOME=/usr/lib/dalamud
 COPY --from=builder /build/dalamud/ ${DALAMUD_HOME}/
