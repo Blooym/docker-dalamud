@@ -40,12 +40,18 @@ jobs:
           - tags: stg-bookworm-slim
             base: mcr.microsoft.com/dotnet/sdk:7.0-bookworm-slim
             branch: stg
+          - tags: net8-bookworm-slim
+            base: mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim
+            branch: net8
           - tags: latest-alpine
             base: mcr.microsoft.com/dotnet/sdk:7.0-alpine
             branch: latest
           - tags: stg-alpine
             base: mcr.microsoft.com/dotnet/sdk:7.0-alpine
             branch: stg
+          - tags: net8-alpine
+            base: mcr.microsoft.com/dotnet/sdk:8.0-alpine
+            branch: net8
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
