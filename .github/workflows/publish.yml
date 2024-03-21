@@ -35,23 +35,17 @@ jobs:
       matrix:
         release:
           - tags: latest,latest-bookworm-slim
-            base: mcr.microsoft.com/dotnet/sdk:7.0-bookworm-slim
+            base: mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim
             branch: latest
           - tags: stg-bookworm-slim
-            base: mcr.microsoft.com/dotnet/sdk:7.0-bookworm-slim
-            branch: stg
-          - tags: net8-bookworm-slim
             base: mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim
-            branch: net8
+            branch: stg
           - tags: latest-alpine
-            base: mcr.microsoft.com/dotnet/sdk:7.0-alpine
+            base: mcr.microsoft.com/dotnet/sdk:8.0-alpine
             branch: latest
           - tags: stg-alpine
-            base: mcr.microsoft.com/dotnet/sdk:7.0-alpine
-            branch: stg
-          - tags: net8-alpine
             base: mcr.microsoft.com/dotnet/sdk:8.0-alpine
-            branch: net8
+            branch: stg
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
