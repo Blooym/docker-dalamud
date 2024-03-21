@@ -20,11 +20,13 @@ FROM ghcr.io/blooym/docker-dalamud:<dalamud-branch>-<os-version>
 
 ### In C# Projects
 
-To use this image with your C# project, you will need to add the following to your `.csproj` file. Please note that you will need to be using `<DalamudLibPath>` for your Dalamud library references for this to work.
+Add the following to your `.csproj` or `.targets` file, replacing any existing definitions of `DalamudLibPath` property.
 
-```csproj
-<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-  <DalamudLibPath>$(DALAMUD_HOME)/</DalamudLibPath>
-  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+```xml
+<PropertyGroup>
+  <DalamudLibPath Condition="$([MSBuild]::IsOSPlatform('Windows'))">$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
+  <DalamudLibPath Condition="$([MSBuild]::IsOSPlatform('Linux'))">$(HOME)/.xlcore/dalamud/Hooks/dev/</DalamudLibPath>
+  <DalamudLibPath Condition="$([MSBuild]::IsOSPlatform('OSX'))">$(HOME)/Library/Application Support/XIV on Mac/dalamud/Hooks/dev/</DalamudLibPath>
+  <DalamudLibPath Condition="$(DALAMUD_HOME) != ''">$(DALAMUD_HOME)/</DalamudLibPath>
 </PropertyGroup>
 ```
