@@ -35,16 +35,16 @@ jobs:
       matrix:
         release:
           - tags: latest,latest-bookworm-slim
-            base: mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim
+            base: mcr.microsoft.com/dotnet/sdk:9.0-bookworm-slim
             branch: latest
           - tags: stg-bookworm-slim
-            base: mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim
+            base: mcr.microsoft.com/dotnet/sdk:9.0-bookworm-slim
             branch: stg
           - tags: latest-alpine
-            base: mcr.microsoft.com/dotnet/sdk:8.0-alpine
+            base: mcr.microsoft.com/dotnet/sdk:9.0-alpine
             branch: latest
           - tags: stg-alpine
-            base: mcr.microsoft.com/dotnet/sdk:8.0-alpine
+            base: mcr.microsoft.com/dotnet/sdk:9.0-alpine
             branch: stg
     steps:
       - name: Set up QEMU
@@ -80,7 +80,7 @@ jobs:
           tags: ${{ matrix.release.tags }}
 
       - name: Build & Publish Image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: ${{ env.PUSH_REGISTRY }}
@@ -100,7 +100,7 @@ jobs:
       packages: write
     steps:
     - name: Prune Untagged 
-      uses: vlaurin/action-ghcr-prune@v0.6.0
+      uses: vlaurin/action-ghcr-prune@0cf7d39f88546edd31965acba78cdcb0be14d641
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         container: docker-dalamud
